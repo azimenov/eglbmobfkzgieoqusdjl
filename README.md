@@ -3,8 +3,9 @@
   .b)postgresql 14
   
   .c)Gradle 7.6
+  
 2. В проекте используется 2 Контроллера, CustomerController /api/v1/customer, EmployeeController /api/v1/employee
-CustomerController methods:
+CustomerController methods
 First of all CustomerCotnroller have greeting method i created this method for testing in testng, address of it /api/v1/customer/greet
 createCustomer() method - this is method for creating new customer, as parameter it takes @RequestBody CustomerRequest with required fields(username, year and etc), it returns CustomerResponse with same fields, it is http post method with /createCustomer address
 deleteCustomerById() method - this is method for deleting customer by id, as parameter it takes id of customer as @PathVariable, it returns CustomerResponse with fields of customer that you deleted, it is http delete method with /deleteCustomerById/{customerId}, so you have write id of customer in path
