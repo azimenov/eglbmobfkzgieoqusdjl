@@ -29,6 +29,7 @@ public class CustomerController {
     public String greeting(){
         return "hello greetgo";
     }
+
     @PostMapping("/createCustomer")
     public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerRequest customerRequest) {
         return customerService.createCustomer(customerRequest);

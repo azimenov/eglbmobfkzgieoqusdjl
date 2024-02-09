@@ -1,5 +1,6 @@
 package com.example.eglbmobfkzgieoqusdjl.employee.controller;
 
+import com.example.eglbmobfkzgieoqusdjl.customer.dto.CustomerRequest;
 import com.example.eglbmobfkzgieoqusdjl.employee.dto.EmployeeRequest;
 import com.example.eglbmobfkzgieoqusdjl.employee.dto.EmployeeResponse;
 import com.example.eglbmobfkzgieoqusdjl.employee.model.Employee;
@@ -17,6 +18,13 @@ import java.util.List;
 @RequestMapping("/api/v1/employee")
 @AllArgsConstructor
 public class EmployeeController {
+    @PostConstruct
+    public void init(){
+        service.create(new EmployeeRequest("margulan", 2005, "+77077146503", "+77077146503"));
+        service.create(new EmployeeRequest("margulan", 2005, "+77077146503", "+77077146503"));
+        service.create(new EmployeeRequest("margulan", 2005, "+77077146503", "+77077146503"));
+        service.create(new EmployeeRequest("margulan", 2005,"+77077146503", "+77077146503"));
+    }
     private final EmployeeService service;
 
     @PostMapping("/createEmployee")

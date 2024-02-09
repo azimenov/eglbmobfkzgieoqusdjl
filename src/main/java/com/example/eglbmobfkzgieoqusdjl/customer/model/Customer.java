@@ -2,6 +2,8 @@ package com.example.eglbmobfkzgieoqusdjl.customer.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,9 +22,14 @@ public class Customer {
     @Column(name = "customer_id")
     private int customerId;
 
+    @NotBlank
     private String username;
     private int year;
+    @NotBlank
+    @Pattern(regexp = "\\+7\\d{10}", message = "invalid phone number")
     private String firstPhoneNumber;
+    @NotBlank
+    @Pattern(regexp = "\\+7\\d{10}", message = "invalid phone number")
     private String secondPhoneNumber;
     private LocalDateTime createdAt;
 }
