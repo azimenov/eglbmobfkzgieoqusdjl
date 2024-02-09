@@ -1,5 +1,7 @@
   1.a)Версия Java - 17
+  
   .b)postgresql 14
+  
   .c)Gradle 7.6
 2. В проекте используется 2 Контроллера, CustomerController /api/v1/customer, EmployeeController /api/v1/employee
 CustomerController methods:
