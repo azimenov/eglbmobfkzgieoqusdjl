@@ -4,9 +4,7 @@ import com.example.eglbmobfkzgieoqusdjl.customer.dto.CustomerRequest;
 import com.example.eglbmobfkzgieoqusdjl.customer.dto.CustomerResponse;
 import com.example.eglbmobfkzgieoqusdjl.customer.model.Customer;
 import com.example.eglbmobfkzgieoqusdjl.customer.repository.CustomerRepository;
-import com.example.eglbmobfkzgieoqusdjl.employee.dto.EmployeeRequest;
 import com.example.eglbmobfkzgieoqusdjl.filter.Filter;
-import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,28 +42,22 @@ public class CustomerService {
     public ResponseEntity<CustomerResponse> deleteById(int id) {
         Optional<Customer> customer = customerRepository.findById(id);
         customerRepository.deleteById(id);
-        if (customer.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(CustomerResponse.builder()
-                    .username(customer.get().getUsername())
-                    .firstPhoneNumber(customer.get().getFirstPhoneNumber())
-                    .secondPhoneNumber(customer.get().getSecondPhoneNumber())
-                    .year(customer.get().getYear())
-                    .build());
-        }
-        return ResponseEntity.notFound().build();
+        return customer.map(value -> ResponseEntity.status(HttpStatus.OK).body(CustomerResponse.builder()
+                .username(value.getUsername())
+                .firstPhoneNumber(value.getFirstPhoneNumber())
+                .secondPhoneNumber(value.getSecondPhoneNumber())
+                .year(value.getYear())
+                .build())).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     public ResponseEntity<CustomerResponse> getById(int id) {
         Optional<Customer> customer = customerRepository.findById(id);
-        if (customer.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(CustomerResponse.builder()
-                    .username(customer.get().getUsername())
-                    .firstPhoneNumber(customer.get().getFirstPhoneNumber())
-                    .secondPhoneNumber(customer.get().getSecondPhoneNumber())
-                    .year(customer.get().getYear())
-                    .build());
-        }
-        return ResponseEntity.notFound().build();
+        return customer.map(value -> ResponseEntity.status(HttpStatus.OK).body(CustomerResponse.builder()
+                .username(value.getUsername())
+                .firstPhoneNumber(value.getFirstPhoneNumber())
+                .secondPhoneNumber(value.getSecondPhoneNumber())
+                .year(value.getYear())
+                .build())).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     public ResponseEntity<CustomerResponse> updateCustomer(CustomerRequest customerRequest, String customerId) {
